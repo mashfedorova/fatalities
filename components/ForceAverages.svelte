@@ -12,6 +12,7 @@
   import { afterUpdate } from "svelte"
 
   export let circles
+  export let blue
 
   // $: console.log(circles)
   // export let offset
@@ -55,7 +56,7 @@
 </script>
 
 {#each circles as circle}
-  <circle cx={circle.x} cy={circle.y} fill="plum" {r} />
+  <circle cx={circle.x} cy={circle.y} fill={blue} {r} />
 {/each}
 
 <style>

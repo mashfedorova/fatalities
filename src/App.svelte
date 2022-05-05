@@ -14,6 +14,7 @@
   let statesSorted = []
   let offset
   let height = 500
+  let blue = "#99C0E9"
 
   function resize() {
     width = document.body.clientWidth
@@ -69,13 +70,6 @@
     })
     states = statesData
 
-    const statesUniqData = await json("data/statesUn.json", (d) => {
-      return {
-        ...d,
-      }
-    })
-    statesUniq = statesUniqData
-
     const sortedStatesData = await csv("data/statesSorted.csv", (d) => {
       return {
         ...d,
@@ -93,14 +87,19 @@
   <div class="circles" bind:this={width}>
     <svg width={widthChart} height="500">
       <g transform="translate(-100,-255)">
-        <ForceAverages {circles} offset={0} width={widthChart} />
+        <ForceAverages {circles} offset={0} width={widthChart} {blue} />
       </g>
       <text y={height - 120} x="55">105 fatal injuries</text>
       <text y={height - 100} x="38">happened on average </text>
       <text y={height - 80} x="58">each month of</text>
       <text y={height - 60} x="35">2017, 2018, and 2019</text>
       <g transform="translate(200,-255)">
-        <ForceAverages circles={circlesCovid} offset={0} width={widthChart} />
+        <ForceAverages
+          circles={circlesCovid}
+          offset={0}
+          width={widthChart}
+          {blue}
+        />
       </g>
       <text y={height - 120} x="390">216 fatal injuries</text>
       <text y={height - 100} x="369">happened on average </text>
@@ -109,10 +108,10 @@
     </svg>
   </div>
   <div class="monthly">
-    <Monthly {monthly} />
+    <Monthly {monthly} {blue} />
   </div>
   <div class="monthly">
-    <States {states} {statesUniq} />
+    <States {states} {statesSorted} {blue} />
   </div>
 </div>
 

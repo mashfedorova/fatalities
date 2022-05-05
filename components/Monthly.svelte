@@ -2,6 +2,7 @@
   import { scaleSqrt, scaleTime, extent, timeFormat } from "d3"
   import { onMount, afterUpdate } from "svelte"
   export let monthly
+  export let blue
 
   // $: console.log(monthly)
 
@@ -65,7 +66,7 @@
 <svg width="1000" height="700">
   <path id="path" d={path} stroke="black" fill="none" />
   {#each dataCalc as d}
-    <circle cx={d.xPos} cy={d.yPos} r={d.r} fill="plum" opacity="0.5" />
+    <circle cx={d.xPos} cy={d.yPos} r={d.r} fill={blue} opacity="0.5" />
     <text
       fill="grey"
       x={d.xPos}

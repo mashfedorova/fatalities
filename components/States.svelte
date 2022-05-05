@@ -12,9 +12,10 @@
   } from "d3"
 
   export let states
-  export let statesUniq
+  export let statesSorted
   let width = 1000
   let height = 1500
+  export let blue
 
   let margin = {
     left: 50,
@@ -27,8 +28,10 @@
     .domain([new Date("2017-01-01 00:00:00"), new Date("2021-12-01 00:00:00")])
     .range([margin.left, width - margin.right])
 
+  $: tickStates = map(statesSorted, (d) => d.state)
+
   $: yScale = scaleBand()
-    .domain(statesUniq)
+    .domain(tickStates)
     .range([margin.top, height - margin.bottom])
 
   $: scaleCircle = scaleSqrt()
@@ -37,7 +40,7 @@
 
   $: ticksDates = xScale.ticks(5)
 
-  // $: console.log(xScale.ticks(10))
+  $: console.log(statesSorted)
 </script>
 
 <svg width="1000" {height}>
@@ -46,12 +49,15 @@
       cx={xScale(state.date)}
       cy={yScale(state.state)}
       r={scaleCircle(state.fatalities)}
-      fill="plum"
+      fill={blue}
       opacity="0.5"
     />
   {/each}
   {#each ticksDates as tick}
     <text x={xScale(tick)} y={height}>{timeFormat("%b %y")(tick)}</text>
+  {/each}
+  {#each tickStates as tick}
+    <text x="0" y={yScale(tick)}>{tick}</text>
   {/each}
 </svg>
 
