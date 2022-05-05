@@ -13,7 +13,7 @@
 
   export let circles
 
-  $: console.log(circles)
+  // $: console.log(circles)
   // export let offset
   export let width = 200
 
