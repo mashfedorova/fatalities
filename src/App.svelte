@@ -1,11 +1,17 @@
 <script>
   import { onMount } from "svelte"
-  import { json, csv } from "d3"
+  import { json, csv, timeParse } from "d3"
   import ForceAverages from "../components/ForceAverages.svelte"
+  import Monthly from "../components/Monthly.svelte"
+  import States from "../components/States.svelte"
 
   let width = document.body.clientWidth
   let circles = []
+  let monthly = []
   let circlesCovid = []
+  let states = []
+  let statesUniq = []
+  let statesSorted = []
   let offset
   let height = 500
 
@@ -41,9 +47,44 @@
       }
     })
     circles = dataCircles
+
+    const monthlyData = await csv("data/montlyFatalities.csv", (d) => {
+      return {
+        ...d,
+        year: +d.year,
+        fatalities: +d.fatalities,
+        date: timeParse("%b.%y")(d.month),
+      }
+    })
+    monthly = monthlyData
+
+    const statesData = await csv("data/montlyFatalitiesState.csv", (d) => {
+      return {
+        ...d,
+        year: +d.year,
+        fatalities: +d.fatalities,
+        monthNum: +d.monthNum,
+        date: timeParse("%b.%y")(d.month),
+      }
+    })
+    states = statesData
+
+    const statesUniqData = await json("data/statesUn.json", (d) => {
+      return {
+        ...d,
+      }
+    })
+    statesUniq = statesUniqData
+
+    const sortedStatesData = await csv("data/statesSorted.csv", (d) => {
+      return {
+        ...d,
+      }
+    })
+    statesSorted = sortedStatesData
   })
 
-  $: console.log(circles)
+  // $: console.log(circles)
 </script>
 
 <svelte:window on:resize={resize} />
@@ -66,6 +107,12 @@
       <text y={height - 80} x="375">each month of 2020</text>
       <text y={height - 60} x="360">largerly due to COVID-19</text>
     </svg>
+  </div>
+  <div class="monthly">
+    <Monthly {monthly} />
+  </div>
+  <div class="monthly">
+    <States {states} {statesUniq} />
   </div>
 </div>
 
