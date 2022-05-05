@@ -9,34 +9,33 @@
     forceCenter,
     scaleOrdinal,
   } from "d3"
+  import { afterUpdate } from "svelte"
 
   export let circles
 
-  let width = 1000
-  let height = 1000
-  let r = 4.5
+  $: console.log(circles)
+  // export let offset
+  export let width = 200
 
-  $: xScale = scalePoint()
-    .domain(["average", "covid"])
-    .range([300, width - 200])
+  $: width < 500 ? 500 : width
 
-  $: simulation1 = forceSimulation(
-    circles.filter((d) => d.fatality === "average")
-  )
-    .force("center", forceCenter(width - 600, height / 2))
-    .force("charge", forceManyBody().strength(0.4))
-    .force("collide", forceCollide().radius(6))
-    .alpha(1)
-    .restart()
+  let height
+  let r = 5
 
-  $: simulation2 = forceSimulation(
-    circles.filter((d) => d.fatality === "covid")
-  )
-    .force("center", forceCenter(width - 300, height / 2))
-    .force("charge", forceManyBody().strength(0.4))
-    .force("collide", forceCollide().radius(6))
-    .alpha(1)
-    .restart()
+  // $: xScale = scalePoint()
+  //   .domain(["average", "covid"])
+  //   .range([300, width - 200])
+
+  // afterUpdate(() => {
+  //   circles = circles
+  // })
+
+  // $: simulation = forceSimulation(circles)
+  //   .force("center", forceCenter(width / 2, height / 2))
+  //   .force("charge", forceManyBody().strength(0.4))
+  //   .force("collide", forceCollide().radius(6))
+  //   .alpha(1)
+  //   .restart()
 
   //   $: simulation = forceSimulation(circles)
   // .force(
@@ -50,13 +49,14 @@
   // .alphaDecay(0.1)
   // .alpha(1)
 
-  $: for (let i = 0; i < circles.length; ++i) simulation.tick()
-
   // $: console.log(circles)
+
+  // $: for (let i = 0; i < circles.length; ++i) simulation.tick()
 </script>
 
-<svg {width} {height}>
-  {#each circles as circle}
-    <circle cx={circle.x} cy={circle.y} fill="plum" {r} />
-  {/each}
-</svg>
+{#each circles as circle}
+  <circle cx={circle.x} cy={circle.y} fill="plum" {r} />
+{/each}
+
+<style>
+</style>
