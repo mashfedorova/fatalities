@@ -190,8 +190,8 @@
   .carousel {
     width: 500px;
     border: 1px solid rgba(88, 88, 88, 0.81);
-    padding: 50px 0;
-    margin-bottom: 20px;
+    padding: 20px 0;
+    margin-bottom: 50px;
     /* box-shadow: 20px 20px rgba(0, 0, 0, 0.15); */
     box-shadow: rgba(117, 117, 117, 0.15) 2.5px 2.5px 3.2px;
     /* box-shadow: rgba(0, 0, 0, 0.15) 2.6px 2.6px 3.5px; */
