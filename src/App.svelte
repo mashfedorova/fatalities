@@ -134,12 +134,7 @@
   </div> -->
   <div class="carousel-container">
     <div class="carousel">
-      <Carousel
-        let:showPrevPage
-        let:showNextPage
-        autoplay
-        autoplayDuration={2000}
-      >
+      <Carousel let:showPrevPage let:showNextPage>
         <div
           slot="prev"
           on:click={showPrevPage}
