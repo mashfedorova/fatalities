@@ -61,11 +61,24 @@
     })
     monthly = monthlyData
 
-    const statesData = await csv("data/montlyFatalitiesState.csv", (d) => {
+    // const statesData = await csv("data/montlyFatalitiesState.csv", (d) => {
+    //   return {
+    //     ...d,
+    //     year: +d.year,
+    //     fatalities: +d.fatalities,
+    //     monthNum: +d.monthNum,
+    //     date: timeParse("%b.%y")(d.month),
+    //   }
+    // })
+    // states = statesData
+
+    const statesData = await csv("data/summary2.csv", (d) => {
       return {
         ...d,
         year: +d.year,
         fatalities: +d.fatalities,
+        covidFatalities: +d.covidFatalities,
+        fatalitiesNonCovid: +d.fatalitiesNonCovid,
         monthNum: +d.monthNum,
         date: timeParse("%b.%y")(d.month),
       }
@@ -177,7 +190,7 @@
   .carousel {
     width: 500px;
     border: 1px solid rgba(88, 88, 88, 0.81);
-    padding: 20px 0;
+    padding: 50px 0;
     margin-bottom: 20px;
     /* box-shadow: 20px 20px rgba(0, 0, 0, 0.15); */
     box-shadow: rgba(117, 117, 117, 0.15) 2.5px 2.5px 3.2px;
@@ -211,5 +224,10 @@
   .arrow-right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
+  }
+  .monthly {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 </style>
