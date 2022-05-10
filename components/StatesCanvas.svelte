@@ -15,8 +15,6 @@
 
   import Tooltip from "./Tooltip.svelte"
 
-  import { minBy } from "lodash"
-
   import { LayerCake, Svg, WebGL, Html } from "layercake"
 
   import { Canvas } from "svelte-canvas"
@@ -73,7 +71,7 @@
   //tooltips
   let hoveredPoint = null
 
-  $: console.log(hoveredItem)
+  // $: console.log(hoveredItem)
 
   // $: quadtreeFun = quadtree()
   //   .x((d) => xScale(d.date))
@@ -86,14 +84,14 @@
       ...d,
       myX: xScale(d.date),
       myY: yScaleTooltip(d.state),
-      r: scaleCircle(d.fatalities),
+      r: scaleCircle(d[varFiltering]),
       yVar: yScale(d.state),
       // xTransformed: x + d.myX,
       // yTransformed: y + d.myY,
     }
   })
 
-  $: console.log(statesCalc)
+  // $: console.log(statesCalc)
 
   $: quadtreeFun = quadtree()
     .x((d) => xScale(d.date))
@@ -160,22 +158,17 @@
         <Point
           x={xScale(state.date)}
           y={yScale(state.state)}
-          r={scaleCircle(state.fatalities)}
-          fill={hoveredPoint === state ? "skyblue" : "plum"}
+          r={scaleCircle(state[varFiltering])}
+          fill={varFiltering === "covidFatalities" && !state.covidFatalities
+            ? "white"
+            : hoveredPoint === state
+            ? "rgb(84, 114, 145)"
+            : "rgb(153, 192, 233)"}
+          stroke={hoveredPoint === state ? "black" : "white"}
           {hoveredPoint}
         />
       {/each}
     </Canvas>
-    <!-- <Html>
-      <QuadTree let:x let:y let:r let:visible dataset={statesCalc}>
-        <div
-          class="circle"
-          style="top:{y}px;left:{x}px;display: {visible
-            ? 'block'
-            : 'none'}; width:{15}px; height:{15}px"
-        />
-      </QuadTree>
-    </Html> -->
     {#if hoveredPoint}
       <Tooltip x={xScale(hoveredPoint.date)} y={yScale(hoveredPoint.state)}>
         <strong>
@@ -184,62 +177,14 @@
         <div>
           {hoveredPoint.state}
         </div>
+        <div>
+          {hoveredPoint[varFiltering]}
+        </div>
       </Tooltip>
     {/if}
   </LayerCake>
 </div>
 
-<!-- <svg {width} {height}>
-  {#each states as state}
-    <circle
-      out:fade
-      cx={xScale(state.date)}
-      cy={yScale(state.state)}
-      r={scaleCircle(state[varFiltering])}
-      fill={hoveredPoint === state ? "skyblue" : "sienna"}
-      stroke={hoveredPoint === state ? "black" : "none"}
-      opacity={varFiltering === "covidFatalities" && !state.covidFatalities
-        ? 0
-        : 0.6}
-    />
-  {/each}
-  {#each ticksDates as tick}
-    <text x={xScale(tick)} y={height}>{timeFormat("%b %y")(tick)}</text>
-  {/each}
-  {#each tickStates as tick}
-    <text x="0" y={yScale(tick)}>{tick}</text>
-  {/each}
-
-  <rect
-    x={margin.right}
-    width={width - margin.top}
-    height={height - margin.bottom}
-    fill="transparent"
-    on:mousemove={(e) => {
-      const pos = pointer(e)
-      const x = pos[0]
-      const y = pos[1]
-      const closestPoint = quadtreeFun.find(x, y)
-      if (!closestPoint) return
-
-      // don't highlight if too far away
-      const hoveredPointPosition = [
-        xScale(closestPoint.date),
-        yScale(closestPoint.state),
-      ]
-      // a^2 + b^2 = c^2
-      const distance = Math.sqrt(
-        (x - hoveredPointPosition[0]) ** 2 + (y - hoveredPointPosition[1]) ** 2
-      )
-      if (distance < 50) {
-        hoveredPoint = closestPoint
-      } else {
-        hoveredPoint = null
-      }
-      console.log(hoveredPointPosition)
-    }}
-  />
-</svg> -->
 <style>
   /* svg {
     display: block;

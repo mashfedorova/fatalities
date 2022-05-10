@@ -72,7 +72,9 @@
       cx={xScale(state.date)}
       cy={yScale(state.state)}
       r={scaleCircle(state[varFiltering])}
-      fill={hoveredPoint === state ? "skyblue" : "sienna"}
+      fill={hoveredPoint === state
+        ? "rgb(224, 212, 148)"
+        : "rgb(153, 192, 233)"}
       stroke={hoveredPoint === state ? "black" : "none"}
       opacity={varFiltering === "covidFatalities" && !state.covidFatalities
         ? 0
