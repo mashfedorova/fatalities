@@ -1,5 +1,5 @@
 <script>
-  import { scaleSqrt, scaleTime, extent, timeFormat } from "d3"
+  import { scaleSqrt, scaleTime, extent, timeFormat, quadtree } from "d3"
   import { onMount, afterUpdate } from "svelte"
   export let monthly
   export let blue
@@ -22,7 +22,6 @@
   let myPath = ""
 
   let rAccessor = (d) => d.fatalities
-
   let xScale = function () {}
 
   $: extentFatalities = extent(monthly, rAccessor)

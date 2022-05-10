@@ -225,7 +225,7 @@ year,month,state,monthNum,fatalities
 2021,Mar.21,KY,2,2
 2021,Mar.21,SC,2,3
 2021,Mar.21,GA,2,3
-2021,Mar.21,AK,2,1
+2017,Jun.17,AK,5,3
 2021,Mar.21,MN,2,7
 2021,Mar.21,TX,2,15
 2021,Mar.21,OR,2,3
@@ -379,7 +379,7 @@ year,month,state,monthNum,fatalities
 2020,Nov.20,ME,10,1
 2020,Nov.20,SC,10,1
 2020,Nov.20,OR,10,5
-2020,Nov.20,AK,10,2
+2017,Oct.17,AK,9,1
 2020,Nov.20,ID,10,2
 2020,Nov.20,MD,10,1
 2020,Nov.20,NJ,10,5
@@ -792,7 +792,7 @@ year,month,state,monthNum,fatalities
 2019,Oct.19,RI,9,1
 2019,Oct.19,KS,9,1
 2019,Oct.19,MS,9,2
-2019,Oct.19,AK,9,1
+2018,May.18,AK,4,1
 2019,Oct.19,AR,9,3
 2019,Oct.19,MI,9,3
 2019,Oct.19,LA,9,5
@@ -877,7 +877,7 @@ year,month,state,monthNum,fatalities
 2019,Aug.19,KS,7,2
 2019,Aug.19,MN,7,2
 2019,Aug.19,MT,7,1
-2019,Aug.19,AK,7,1
+2018,Jul.18,AK,6,1
 2019,Aug.19,ME,7,1
 2019,Aug.19,NE,7,1
 2019,Aug.19,UT,7,1
@@ -961,7 +961,7 @@ year,month,state,monthNum,fatalities
 2019,Jun.19,MN,5,2
 2019,Jun.19,PA,5,3
 2019,Jun.19,MA,5,2
-2019,Jun.19,AK,5,1
+2019,Mar.19,AK,2,1
 2019,Jun.19,CT,5,1
 2019,Jun.19,OH,5,1
 2019,Jun.19,KY,5,1
@@ -1068,7 +1068,7 @@ year,month,state,monthNum,fatalities
 2019,Mar.19,IA,2,1
 2019,Mar.19,KY,2,2
 2019,Mar.19,VA,2,2
-2019,Mar.19,AK,2,1
+2019,Jun.19,AK,5,1
 2019,Mar.19,CO,2,1
 2019,Mar.19,PR,2,2
 2019,Mar.19,NM,2,1
@@ -1346,7 +1346,7 @@ year,month,state,monthNum,fatalities
 2018,Jul.18,LA,6,3
 2018,Jul.18,TN,6,1
 2018,Jul.18,UT,6,2
-2018,Jul.18,AK,6,1
+2019,Aug.19,AK,7,1
 2018,Jul.18,MS,6,2
 2018,Jul.18,ID,6,1
 2018,Jul.18,WV,6,1
@@ -1410,7 +1410,7 @@ year,month,state,monthNum,fatalities
 2018,May.18,SD,4,2
 2018,May.18,AZ,4,2
 2018,May.18,HI,4,4
-2018,May.18,AK,4,1
+2019,Oct.19,AK,9,1
 2018,May.18,GA,4,1
 2018,May.18,CO,4,1
 2018,May.18,AL,4,3
@@ -1627,7 +1627,7 @@ year,month,state,monthNum,fatalities
 2017,Oct.17,LA,9,2
 2017,Oct.17,ME,9,1
 2017,Oct.17,TN,9,1
-2017,Oct.17,AK,9,1
+2020,Aug.20,AK,7,1
 2017,Oct.17,MN,9,5
 2017,Oct.17,NC,9,2
 2017,Oct.17,FL,9,10
@@ -1779,7 +1779,7 @@ year,month,state,monthNum,fatalities
 2017,Jun.17,MD,5,1
 2017,Jun.17,OH,5,2
 2017,Jun.17,GA,5,3
-2017,Jun.17,AK,5,3
+2020,Nov.20,AK,10,2
 2017,Jun.17,UT,5,1
 2017,Jun.17,VA,5,2
 2017,Jun.17,MA,5,1
@@ -1968,7 +1968,7 @@ year,month,state,monthNum,fatalities
 2021,Nov.21,OH,10,1
 2021,Nov.21,TN,10,1
 2021,Oct.21,MN,9,1
-2021,Oct.21,AK,9,1
+2021,Feb.21,AK,1,1
 2021,Sep.21,WV,8,1
 2021,Apr.21,DC,3,1
 2020,Nov.20,NM,10,6
@@ -1996,7 +1996,7 @@ year,month,state,monthNum,fatalities
 2021,May.21,NE,4,1
 2021,Apr.21,IN,3,1
 2021,Mar.21,CT,2,1
-2021,Feb.21,AK,1,1
+2021,Mar.21,AK,2,1
 2021,Feb.21,CT,1,1
 2021,Feb.21,DC,1,1
 2021,Feb.21,MI,1,1
@@ -2026,7 +2026,7 @@ year,month,state,monthNum,fatalities
 2020,Oct.20,KS,9,1
 2020,Sep.20,ND,8,1
 2020,Sep.20,NE,8,2
-2020,Aug.20,AK,7,1
+2021,Oct.21,AK,9,1
 2020,Jul.20,VA,6,3
 2020,Jul.20,MO,6,4
 2020,Jul.20,CT,6,2

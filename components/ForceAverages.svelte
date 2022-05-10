@@ -56,7 +56,7 @@
 </script>
 
 {#each circles as circle}
-  <circle cx={circle.x} cy={circle.y} fill={blue} {r} />
+  <circle cx={circle.x} cy={circle.y} {r} fill={blue} />
 {/each}
 
 <style>

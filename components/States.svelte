@@ -9,13 +9,16 @@
     map,
     extent,
     timeFormat,
+    pointer,
+    quadtree,
   } from "d3"
 
   import { fade } from "svelte/transition"
+  import Tooltip from "./Tooltip.svelte"
 
   export let states
   export let statesSorted
-  export let blue
+  // export let blue
 
   let width = 1000
   let height = 1500
@@ -44,7 +47,15 @@
 
   $: ticksDates = xScale.ticks(5)
 
-  $: console.log(states)
+  // $: console.log(states)
+
+  //tooltips
+  let hoveredPoint = null
+
+  $: quadtreeFun = quadtree()
+    .x((d) => xScale(d.date))
+    .y((d) => yScale(d.state))
+    .addAll(states)
 </script>
 
 <div class="buttons-container">
@@ -54,14 +65,15 @@
   >
   <button on:click={() => (varFiltering = "fatalities")}>all</button>
 </div>
-<svg width="1000" {height}>
+<svg {width} {height}>
   {#each states as state}
     <circle
       out:fade
       cx={xScale(state.date)}
       cy={yScale(state.state)}
       r={scaleCircle(state[varFiltering])}
-      fill={blue}
+      fill={hoveredPoint === state ? "skyblue" : "sienna"}
+      stroke={hoveredPoint === state ? "black" : "none"}
       opacity={varFiltering === "covidFatalities" && !state.covidFatalities
         ? 0
         : 0.6}
@@ -73,7 +85,50 @@
   {#each tickStates as tick}
     <text x="0" y={yScale(tick)}>{tick}</text>
   {/each}
+
+  <rect
+    x={margin.right}
+    width={width - margin.top}
+    height={height - margin.bottom}
+    fill="transparent"
+    on:mousemove={(e) => {
+      const pos = pointer(e)
+      const x = pos[0]
+      const y = pos[1]
+      const closestPoint = quadtreeFun.find(x, y)
+      if (!closestPoint) return
+
+      // don't highlight if too far away
+      const hoveredPointPosition = [
+        xScale(closestPoint.date),
+        yScale(closestPoint.state),
+      ]
+      // a^2 + b^2 = c^2
+      const distance = Math.sqrt(
+        (x - hoveredPointPosition[0]) ** 2 + (y - hoveredPointPosition[1]) ** 2
+      )
+      if (distance < 15) {
+        hoveredPoint = closestPoint
+      } else {
+        hoveredPoint = null
+      }
+    }}
+  />
 </svg>
+
+{#if hoveredPoint}
+  <Tooltip
+    x={margin.left + 70 + xScale(hoveredPoint.date)}
+    y={yScale(hoveredPoint.state) + 785}
+  >
+    <strong>
+      {hoveredPoint.date}
+    </strong>
+    <div>
+      {hoveredPoint.state}
+    </div>
+  </Tooltip>
+{/if}
 
 <style>
   svg {

@@ -4,6 +4,7 @@
   import ForceAverages from "../components/ForceAverages.svelte"
   import Monthly from "../components/Monthly.svelte"
   import States from "../components/States.svelte"
+  import StatesCanvas from "../components/StatesCanvas.svelte"
   import Card from "../components/Card.svelte"
   import Carousel from "svelte-carousel"
 
@@ -60,17 +61,6 @@
       }
     })
     monthly = monthlyData
-
-    // const statesData = await csv("data/montlyFatalitiesState.csv", (d) => {
-    //   return {
-    //     ...d,
-    //     year: +d.year,
-    //     fatalities: +d.fatalities,
-    //     monthNum: +d.monthNum,
-    //     date: timeParse("%b.%y")(d.month),
-    //   }
-    // })
-    // states = statesData
 
     const statesData = await csv("data/summary2.csv", (d) => {
       return {
@@ -158,6 +148,9 @@
   <div class="monthly">
     <States {states} {statesSorted} {blue} />
   </div>
+  <div class="monthly2">
+    <StatesCanvas {states} {statesSorted} {blue} />
+  </div>
 </div>
 
 <style>
@@ -220,7 +213,8 @@
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
   }
-  .monthly {
+  .monthly,
+  .monthly2 {
     display: flex;
     flex-direction: column;
     align-items: center;
