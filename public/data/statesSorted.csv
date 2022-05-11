@@ -1,57 +1,53 @@
-state
-CA
-TX
-NY
-FL
-IL
-NJ
-OH
-NC
-PA
-GA
-MI
-TN
-OR
-VA
-KY
-IN
-LA
-AL
-OK
-WI
-SC
-MN
-MA
-MD
-CO
-MO
-IA
-AR
-KS
-AZ
-MS
-NE
-UT
-CT
-NM
-WV
-PR
-ID
-NV
-ND
-ME
-NH
-RI
-HI
-WY
-DE
-MT
-DC
-VT
-SD
-AK
-GU
-WA
-VI
-AS
-MP
+state,stateName
+CA,California
+TX,Texas
+NY,New York
+FL,Florida
+IL,Illinois
+NJ,New Jersey
+OH,Ohio
+NC,North Carolina
+PA,Pennsylvania
+GA,Georgia
+MI,Michigan
+TN,Tennessee
+OR,Oregon
+VA,Virginia
+KY,Kentucky
+IN,Indiana
+LA,Louisiana
+AL,Alabama
+OK,Oklahoma
+WI,Wisconsin
+SC,South Carolina
+MN,Minnesota
+MA,Massachusetts
+MD,Maryland
+CO,Colorado
+MO,Missouri
+IA,Iowa
+AR,Arkansas
+KS,Kansas
+AZ,Arizona
+MS,Mississippi
+NE,Nebraska
+UT,Utah
+CT,Connecticut
+NM,New Mexico
+WV,West Virginia
+PR,Puerto Rico
+ID,Idaho
+NV,Nevada
+ND,North Dakota
+ME,Maine
+NH,New Hampshire
+RI,Rhode Island
+HI,Hawaii
+WY,Wyoming
+DE,Delaware
+MT,Montana
+DC,D.C.
+VT,Vermont
+SD,South Dakota
+AK,Alaska
+WA,Washington

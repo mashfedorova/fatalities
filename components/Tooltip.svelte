@@ -50,11 +50,12 @@
   .tooltip {
     padding: 0.5em;
     background: white;
+    opacity: 0.9;
     min-width: 8em;
     text-align: center;
-    font-size: 0.7em;
-    border: 1px solid;
-    box-shadow: 0 13px 27px -5px rgba(50, 50, 93, 0.25),
-      0 8px 16px -8px rgba(0, 0, 0, 0.3);
+    font-size: 0.8rem;
+    border: 1px solid rgba(88, 88, 88, 0.81);
+    box-shadow: rgba(117, 117, 117, 0.15) 2.5px 2.5px 3.2px;
+    background-color: #ffffff;
   }
 </style>

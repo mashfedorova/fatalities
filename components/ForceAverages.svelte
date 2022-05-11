@@ -12,10 +12,8 @@
   import { afterUpdate } from "svelte"
 
   export let circles
-  export let blue
+  let blue = "#99C0E9"
 
-  // $: console.log(circles)
-  // export let offset
   export let width = 200
 
   $: width < 500 ? 500 : width

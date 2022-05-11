@@ -2,8 +2,6 @@
   import { onMount } from "svelte"
   import { json, csv, timeParse } from "d3"
   import ForceAverages from "../components/ForceAverages.svelte"
-  import Monthly from "../components/Monthly.svelte"
-  import States from "../components/States.svelte"
   import StatesCanvas from "../components/StatesCanvas.svelte"
   import Card from "../components/Card.svelte"
   import Carousel from "svelte-carousel"
@@ -28,16 +26,6 @@
   onMount(resize)
 
   onMount(async () => {
-    // const dataCircles = await csv(
-    //   "data/forceCirclesFatalitiesAverages.csv",
-    //   (d) => {
-    //     return {
-    //       ...d,
-    //     }
-    //   }
-    // )
-    // circles = dataCircles
-
     const dataCirclesCovid = await json("data/fatCovid.json", (d) => {
       return {
         ...d,
@@ -83,45 +71,90 @@
     statesSorted = sortedStatesData
   })
 
-  // $: console.log(circles)
-
   let stories = [
-    "Worker died in fall from roof",
-    "Worker fatally struck by pickup truck",
-    "Worker fatally injured while training horse",
-    "Worker fatally crushed when mower rolled over.",
+    "Worker fatally struck by tree debris, in Minnesota",
+    "Worker died in fall from telecommunications tower, in Illinois",
+    "Worker fatally struck by trailer backing up, in Texas",
+    "Worker fatally injured in fall from ladder, in Tennessee",
+    "Worker died in fall from roof, in Washington",
+    "Worker fatally crushed while servicing elevator, in Florida",
+    "Worker died when tree fell on truck, California",
+    "Worker electrocuted after contacting transformer, in California",
+    "Worker died after being struck by vehicle at construction site, in Texas",
+    "Worker electrocuted after contacting power lines, in Texas",
+    "Worker died in vehicle collision, in Iowa",
+    "Worker died after being struck by bulldozer., in  Hawaii",
   ]
 </script>
 
 <svelte:window on:resize={resize} />
-
 <div class="charts">
+  <h1>Work related fatalities</h1>
+  <p class="intro">
+    Between 2017 and 2021, approximately 8,000 fatalities happened at workplaces
+    around the United States. Around 1,500 people were fatally injured at their
+    workplaces every year since 2017. In 2020 there were more than twice as many
+    work-related fatalities due to the COVID-19 pandemic. Every day,
+    approximately three people are fatally injured at their workplaces in the
+    United States.
+  </p>
+  <p class="intro">
+    The visualizations below provide an overview of the work-related fatalities
+    that occurred under Federal OSHA and State Plan jurisdiction for cases that
+    have been closed or citations issued on or after January 1, 2017. The full
+    dataset is available on the United States Department of Labour <a
+      href="https://www.osha.gov/fatalities"
+      target="_blank">website</a
+    >.
+  </p>
+  <h3 class="force-title">
+    The average number of work-related fatalities each month of every year
+    between 2017 and 2021
+  </h3>
   <div class="circles" bind:this={width}>
     <svg width={widthChart} height="500">
-      <g transform="translate(-100,-255)">
-        <ForceAverages {circles} offset={0} width={widthChart} {blue} />
-      </g>
-      <text y={height - 120} x="55">105 fatal injuries</text>
-      <text y={height - 100} x="38">happened on average </text>
-      <text y={height - 80} x="58">each month of</text>
-      <text y={height - 60} x="35">2017, 2018, and 2019</text>
-      <g transform="translate(200,-255)">
-        <ForceAverages
-          circles={circlesCovid}
-          offset={0}
-          width={widthChart}
-          {blue}
-        />
-      </g>
-      <text y={height - 120} x="390">216 fatal injuries</text>
-      <text y={height - 100} x="369">happened on average </text>
-      <text y={height - 80} x="375">each month of 2020</text>
-      <text y={height - 60} x="360">largerly due to COVID-19</text>
+      {#if width < 500}
+        <g transform="translate(-40,-350)">
+          <ForceAverages {circles} width={widthChart} />
+        </g>
+        <g transform="translate(78,-50)">
+          <text y={height - 120} x="55">105 fatal injuries</text>
+          <text y={height - 100} x="38">happened on average </text>
+          <text y={height - 80} x="58">each month of</text>
+          <text y={height - 60} x="35">2017, 2018, and 2019</text>
+        </g>
+        <g transform="translate(130,-350)">
+          <ForceAverages circles={circlesCovid} width={widthChart} />
+        </g>
+        <g transform="translate(-59,-60)">
+          <text y={height - 120} x="390">216 fatal injuries</text>
+          <text y={height - 100} x="369">happened on average </text>
+          <text y={height - 80} x="375">each month of 2020</text>
+          <text y={height - 60} x="360">largerly due to COVID-19</text>
+        </g>
+      {/if}
+      {#if width >= 500}
+        <g transform="translate(-100,-360)">
+          <ForceAverages {circles} width={widthChart} />
+        </g>
+        <g transform="translate(0,-70)">
+          <text y={height - 120} x="75">105 fatal injuries</text>
+          <text y={height - 100} x="55">happened on average</text>
+          <text y={height - 80} x="79">each month of</text>
+          <text y={height - 60} x="57">2017, 2018, and 2019</text>
+        </g>
+        <g transform="translate(200,-360)">
+          <ForceAverages circles={circlesCovid} width={widthChart} />
+        </g>
+        <g transform="translate(0,-70)">
+          <text y={height - 120} x="400">216 fatal injuries</text>
+          <text y={height - 100} x="385">happened on average </text>
+          <text y={height - 80} x="389">each month of 2020</text>
+          <text y={height - 60} x="375">largerly due to COVID-19</text>
+        </g>
+      {/if}
     </svg>
   </div>
-  <!-- <div class="monthly">
-    <Monthly {monthly} {blue} />
-  </div> -->
   <div class="carousel-container">
     <div class="carousel">
       <Carousel let:showPrevPage let:showNextPage>
@@ -145,11 +178,27 @@
       </Carousel>
     </div>
   </div>
-  <div class="monthly">
-    <States {states} {statesSorted} {blue} />
-  </div>
-  <div class="monthly2">
-    <StatesCanvas {states} {statesSorted} {blue} />
+  <p class="para">
+    The highest number of work-related fatalities was recorded in April 2020,
+    when the COVID-19 pandemic hit the United States. The number of
+    COVID-related fatalities remained relatively high in 2020, with
+    approximately 100 people dying from COVID-19 at their workplaces, amounting
+    to more than half of all work-related fatalities in 2020.
+  </p>
+  <p class="para para-last">
+    The visualization below allows exploring the absolute number of work-related
+    fatalities by state, month, and year, as well as filtering by COVID-19 and
+    non COVID-19 related fatalities. While looking at the number of fatalities,
+    it is important to keep in mind that the absolute numbers reflect the
+    population of the States. While having experienced the highest number of
+    work-related fatalities, California and Taxes are also the two most populous
+    states in the U.S.
+  </p>
+  <h3>
+    Number of work-related fatalities by state and month between 2017 and 2017
+  </h3>
+  <div class="monthly2" bind:this={width}>
+    <StatesCanvas {states} {statesSorted} widthChart={width} />
   </div>
 </div>
 
@@ -179,10 +228,14 @@
     width: 500px;
     border: 1px solid rgba(88, 88, 88, 0.81);
     padding: 20px 0;
-    margin-bottom: 50px;
-    /* box-shadow: 20px 20px rgba(0, 0, 0, 0.15); */
+    margin-bottom: 80px;
     box-shadow: rgba(117, 117, 117, 0.15) 2.5px 2.5px 3.2px;
-    /* box-shadow: rgba(0, 0, 0, 0.15) 2.6px 2.6px 3.5px; */
+  }
+
+  @media only screen and (max-width: 550px) {
+    .carousel {
+      width: 380px;
+    }
   }
 
   .custom-arrow {
@@ -213,10 +266,38 @@
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
   }
-  .monthly,
+
   .monthly2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  a {
+    color: #84a8cf;
+  }
+
+  a:hover {
+    color: #597491;
+  }
+
+  h1,
+  h3 {
+    color: #99c0e9;
+  }
+
+  .intro,
+  .para {
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+
+  .force-title {
+    margin-top: 50px;
+  }
+
+  .para-last {
+    margin-bottom: 70px;
   }
 </style>
