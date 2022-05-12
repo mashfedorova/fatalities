@@ -1,7 +1,7 @@
 <script>
   export let x
   export let y
-  // let's set its placement using [xOffset, yOffset]
+
   export let placement = [-50, -100]
 
   $: side = placement[1] > -50 ? "bottom" : "top"
@@ -31,12 +31,10 @@
     top: 0;
     left: 0;
     z-index: 10;
-    /* don't capture mouse events */
     pointer-events: none;
   }
   .tooltip-wrapper {
     position: absolute;
-    /* make space for the arrow */
     padding: 5px;
     z-index: 1;
   }
@@ -44,7 +42,6 @@
     position: absolute;
     height: 6px;
     width: 12px;
-    /* keep arrow on top, to cover border */
     z-index: 2;
   }
   .tooltip {
