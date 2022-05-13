@@ -91,9 +91,9 @@
 <div class="charts">
   <h1>Work related fatalities</h1>
   <p class="intro">
-    Between 2017 and 2021, more at least 8,000 people were killed in
-    work-related incidents in the United States. This means that every day,
-    approximately four people are fatally injured at their workplaces.
+    Between 2017 and 2021, at least 8,000 people were killed in work-related
+    incidents in the United States. This means that every day, approximately
+    four people are fatally injured at their workplaces.
   </p>
   <p class="intro">
     While some industries are inherently more dangerous than others, a
