@@ -91,21 +91,41 @@
 <div class="charts">
   <h1>Work related fatalities</h1>
   <p class="intro">
-    Between 2017 and 2021, approximately 8,000 fatalities happened at workplaces
-    around the United States. Around 1,500 people were fatally injured at their
-    workplaces every year since 2017. In 2020 there were more than twice as many
-    work-related fatalities due to the COVID-19 pandemic. Every day,
-    approximately three people are fatally injured at their workplaces in the
-    United States.
+    Between 2017 and 2021, more at least 8,000 people were killed in
+    work-related incidents in the United States. This means that every day,
+    approximately four people are fatally injured at their workplaces.
   </p>
   <p class="intro">
-    The visualizations below provide an overview of the work-related fatalities
-    that occurred under Federal OSHA and State Plan jurisdiction for cases that
-    have been closed or citations issued on or after January 1, 2017. The full
-    dataset is available on the United States Department of Labour <a
-      href="https://www.osha.gov/fatalities"
-      target="_blank">website</a
-    >.
+    While some industries are inherently more dangerous than others, a
+    work-related fatality can occur in any setting and in a number of ways.
+  </p>
+  <div class="carousel-container">
+    <div class="carousel">
+      <Carousel let:showPrevPage let:showNextPage>
+        <div
+          slot="prev"
+          on:click={showPrevPage}
+          class="custom-arrow custom-arrow-prev"
+        >
+          <i class="arrow arrow-left" />
+        </div>
+        {#each stories as story}
+          <Card {story} />
+        {/each}
+        <div
+          slot="next"
+          on:click={showNextPage}
+          class="custom-arrow custom-arrow-next"
+        >
+          <i class="arrow arrow-right" />
+        </div>
+      </Carousel>
+    </div>
+  </div>
+  <p class="intro">
+    In a typical year, around 1,300 people are fatally injured at U.S.
+    workplaces. However, due to the COVID-19 pandemic, there were 2,600
+    work-related fatalities in 2020, nearly twice as many as during other years.
   </p>
   <h3 class="force-title">
     The average number of work-related fatalities each month of every year
@@ -155,29 +175,7 @@
       {/if}
     </svg>
   </div>
-  <div class="carousel-container">
-    <div class="carousel">
-      <Carousel let:showPrevPage let:showNextPage>
-        <div
-          slot="prev"
-          on:click={showPrevPage}
-          class="custom-arrow custom-arrow-prev"
-        >
-          <i class="arrow arrow-left" />
-        </div>
-        {#each stories as story}
-          <Card {story} />
-        {/each}
-        <div
-          slot="next"
-          on:click={showNextPage}
-          class="custom-arrow custom-arrow-next"
-        >
-          <i class="arrow arrow-right" />
-        </div>
-      </Carousel>
-    </div>
-  </div>
+
   <p class="para">
     The highest number of work-related fatalities was recorded in April 2020,
     when the COVID-19 pandemic hit the United States. The number of
@@ -200,6 +198,17 @@
   <div class="monthly2" bind:this={width}>
     <StatesCanvas {states} {statesSorted} widthChart={width} />
   </div>
+  <p class="intro" />
+  <p class="intro last">
+    The visualizations above provide an overview of the work-related fatalities
+    that occurred under Federal OSHA and State Plan jurisdiction for cases that
+    have been closed or citations issued on or after January 1, 2017. The full
+    dataset is available on the United States Department of Labor <a
+      href="https://www.osha.gov/fatalities"
+      target="_blank">website</a
+    >.These numbers reflect only those that have been reported to the DOL, so
+    the real totals are likely much higher.
+  </p>
 </div>
 
 <style>
@@ -228,7 +237,8 @@
     width: 500px;
     border: 1px solid rgba(88, 88, 88, 0.81);
     padding: 20px 0;
-    margin-bottom: 80px;
+    margin-bottom: 50px;
+    margin-top: 40px;
     box-shadow: rgba(117, 117, 117, 0.15) 2.5px 2.5px 3.2px;
   }
 
@@ -284,6 +294,7 @@
   h1,
   h3 {
     color: #99c0e9;
+    margin-bottom: 40px;
   }
 
   .intro,
@@ -298,6 +309,11 @@
   }
 
   .para-last {
-    margin-bottom: 70px;
+    margin-bottom: 50px;
+  }
+
+  .last {
+    margin-bottom: 50px;
+    margin-top: 50px;
   }
 </style>
